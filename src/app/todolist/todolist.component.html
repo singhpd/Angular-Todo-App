@@ -1,0 +1,32 @@
+
+    <div class="card-body">
+        <div class="card shadow" >
+            <h5 class="card-header">My Todo List</h5>
+            <div class="card-body">
+                <ul class="list-group" *ngFor="let todo of todos.todoList ;let i = index">
+        
+                    <li class="list-group-item d-flex" [ngClass]="toggle(todo)" >
+                       
+                        <div class="form-check d-inline col-5">
+                            <input type="checkbox" class="form-check-input" id="complete" (change)="onChange(todo)">
+                            <!-- <label for="complete" class="form-check-label lead">{{todo.title}}</label> -->
+                            <input type="text"   [disabled]="todo.inputTexts" [(ngModel)]="todo.title">
+                        </div>
+                        <div class="float-right">
+                            <span class="mx-3">{{todo.date | date}}</span>
+                            <!-- <i class="fa fa-heart mx-3 btn" (click)='isFavorite()' [ngClass]="todo.isFavorite? 'text-danger' : '' "></i> -->
+                            <!-- <button class="btn btn-danger btn-sm mx-3" (click)="onCliCk($event)">x</button> -->
+                            <!-- <button class="btn btn-danger btn-sm mx-3" (click)="todoService.deleteTodo(todoInput)">x</button> -->
+                            <button class="btn btn-danger btn-sm mx-3" (click)="deleteTodo(i)">x</button>
+                            <button class="btn btn-success btn-sm mx-3" (click)="editTodo(i, todo)">Edit</button>
+                            <button *ngIf="todo.isEdit" class="btn btn-primary btn-sm mx-3" (click)="SaveTodo(i,todo)">save</button>
+                            
+                        </div>
+                    </li>
+        
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+
